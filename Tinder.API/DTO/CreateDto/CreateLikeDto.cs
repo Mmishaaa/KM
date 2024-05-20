@@ -1,8 +1,7 @@
-﻿namespace Tinder.API.Models
+﻿namespace Tinder.API.DTO.CreateDto
 {
-    public class LikeDto
+    public class CreateLikeDto
     {
-        public Guid Id { get; set; }
         public Guid SenderId { get; set; }
         public Guid ReceiverId { get; set; }
     }
