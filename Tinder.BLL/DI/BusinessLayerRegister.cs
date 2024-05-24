@@ -17,6 +17,8 @@ namespace Tinder.BLL.DI
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILikeService, LikeService>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IChatService, ChatService>();
+            services.AddScoped<IMessageService, MessageService>();
         }
     }
 }
