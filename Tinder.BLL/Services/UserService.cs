@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json.Linq;
+using System.Text.Json.Nodes;
+using Tinder.BLL.Extensions;
 using Tinder.BLL.Interfaces;
 using Tinder.BLL.Models;
 using Tinder.DAL.Entities;
@@ -8,12 +11,35 @@ namespace Tinder.BLL.Services
 {
     public class UserService : GenericService<User, UserEntity>, IUserService
     {
+        private readonly IUserRepository _userRepository;
 
         public UserService(IUserRepository repository, IMapper mapper)
             : base(repository, mapper)
         {
-           
+            _userRepository = repository;
         }
 
+        public async Task<User> CreateUserFromJson(JsonObject request, CancellationToken cancellationToken)
+        {
+            var jsonObject = JObject.Parse(request.ToJsonString());
+            var userJson = jsonObject["event"]["user"];
+
+            var fusionUserId = Guid.Parse(userJson["id"].ToString());
+            var firstName = userJson["firstName"].ToString();
+            var lastName = userJson["lastName"].ToString();
+            var birthDate = (DateTime)userJson["birthDate"];
+
+            var user = new User
+            {
+                FusionUserId = fusionUserId,
+                FirstName = firstName,
+                LastName = lastName,
+                Age = birthDate.CalculateAge()
+            };
+
+            var userEntity = _mapper.Map<UserEntity>(user);
+            var createdUser = await _userRepository.CreateFromJsonAsync(userEntity, cancellationToken);
+            return _mapper.Map<User>(createdUser);
+        }
     }
 }
