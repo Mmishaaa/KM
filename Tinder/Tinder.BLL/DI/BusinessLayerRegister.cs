@@ -34,6 +34,9 @@ namespace Tinder.BLL.DI
                 busConfiguration.SetKebabCaseEndpointNameFormatter();
 
                 busConfiguration.AddConsumer<SubscriptionCreatedConsumer>();
+                busConfiguration.AddConsumer<SubscriptionDeletedConsumer>();
+                busConfiguration.AddConsumer<SubscriptionUpdatedConsumer>();
+                busConfiguration.AddConsumer<SubscriptionExpiredConsumer>();
 
                 busConfiguration.UsingRabbitMq((context, configurator) =>
                 {
