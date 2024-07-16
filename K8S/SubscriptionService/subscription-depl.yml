@@ -44,9 +44,3 @@ spec:
       protocol: TCP
       port: 5002
       targetPort: 5002
-
-      # - MongoDB__ConnectionString=mongodb://${MONGO_USER}:${MONGO_PASSWORD}@subscription.service.mongodb:27017
-      # - MongoDB__DatabaseName=${MONGO_DATABASENAME}
-      # - MessageBroker__Host=${RABBITMQ_HOST}
-      # - MessageBroker__Username=${RABBITMQ_USER}
-      # - MessageBroker__Password=${RABBITMQ_PASSWORD}
