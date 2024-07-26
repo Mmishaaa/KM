@@ -208,6 +208,22 @@ kubectl get service
 ```
     ✓ Find services with NodePort TYPE and you can acces them via http://localhost:3xxxx
     ✓ Find services with LoadBalancer TYPE and you can acces them via http://localhost:port, use the first port(by default, one of these: 27017/1433/5432/15672)
+3) Baae credentials
+```
+MSSQL:    host: localhost:1433
+          login: sa
+          password: Pass@word
+Postgres: host: localhost:5432
+          user: postgres
+          password: postgres
+Mongodb:  host: localhost:27017
+          password: rootpassword
+          username: root
+          connectionString: mongodb://root:rootpassword@localhost:27017/
+RabbitMq  host: localhost:15672
+          username: user
+          password: password
+```
 - # Commands sheet
   
 1) Get all pods
